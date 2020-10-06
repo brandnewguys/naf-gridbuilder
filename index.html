@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Never a Flaw GridProjector</title>
+	<script src="jquery-3.5.1.min.js"></script>
+	<script src="gridBuilder.js"></script>
+	<style>
+		body {
+			background-color: black;
+		}
+		.coords {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			background-color: black;
+			color: white;
+		}
+	</style>
+	<script>
+		var vert = 140;
+		var horiz = 140;
+
+		$(document).ready(function(){
+		  var grid = $("body").gridBuilder({
+		    color:          'red',    // color of the primary gridlines
+		    secondaryColor: '#f9f9f9', // color of the secondary gridlines
+		    vertical:       vert,        // height of the vertical rhythm
+		    horizontal:     horiz,       // width of horizontal strokes
+		    gutter:         0,        // width of the gutter between strokes
+		  });
+		});
+		$(document).keydown(function(e) {
+			console.log(e.keyCode);
+			switch(e.keyCode) {
+			  case 38:
+			    vert++
+			    break;
+			  case 40:
+			    vert--
+			    break;
+			  case 37:
+			    horiz--
+			    break;
+			  case 39:
+			    horiz++
+			    break;
+			}
+
+			$("body").gridBuilder({
+			    color:          'red',    // color of the primary gridlines
+			    secondaryColor: '#f9f9f9', // color of the secondary gridlines
+			    vertical:       vert,        // height of the vertical rhythm
+			    horizontal:     horiz,       // width of horizontal strokes
+			    gutter:         0,        // width of the gutter between strokes
+			  });
+			$('.horiz').text(horiz);
+			$('.vert').text(vert);
+		});
+	</script>
+</head>
+<body>
+	<div class="coords">
+		x<span class="horiz">140</span><br />
+		y<span class="vert">140</span>
+
+	</div>
+</body>
+</html>
